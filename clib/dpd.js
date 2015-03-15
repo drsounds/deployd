@@ -1,12 +1,10 @@
 (function (undefined) {
 
   if (!window._dpd) window._dpd = {};
-
-  var root = window.location.protocol + '//' + window.location.hostname;
-  if (window.location.port !== '') {
-    root += ':' + window.location.port;
-  }
-
+  // Based on https://github.com/sscovil/deployd/commit/a83ab9e2c41c2e8cfaefb93116ccd3f809ee2701
+  var root = document.currentScript.getAttribute('src')
+        .replace(/(.*)(\/.*\.js)$/, '$1')
+      .replace(/^[^\/]*.js$/, '');
   var consoleLog = (typeof console !== 'undefined') && console.log;
 
   // initial socket connection
